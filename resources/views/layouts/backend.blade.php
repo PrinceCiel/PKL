@@ -1156,6 +1156,7 @@
   <script src="{{ asset('assets/backend/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
   <script src="{{ asset('assets/backend/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
   <script src="{{ asset('assets/backend/js/dashboards/dashboard.js') }}"></script>
+  @include('sweetalert::alert')
   @yield('js')
   @stack('scripts')
 </body>

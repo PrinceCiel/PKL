@@ -1,4 +1,6 @@
 @extends('layouts.backend')
+@section('styles')
+@endsection
 @section('content')
 <div class="container-fluid">
     <!--  Owl carousel -->
@@ -567,3 +569,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+
+@endpush
