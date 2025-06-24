@@ -33,7 +33,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="main/index2.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('product.index')}}" aria-expanded="false">
             <span>
                 <i class="ti ti-shopping-cart"></i>
             </span>

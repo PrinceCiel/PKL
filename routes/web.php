@@ -3,57 +3,21 @@
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\BackendController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route Member / Guest
+
+Route::get('/', [FrontendController::class, 'index']);
+Route::get('/about', [FrontendController::class, 'about']);
+Route::get('/product', [FrontendController::class, 'product']);
+Route::get('/product/{slug}', [FrontendController::class, 'show']);
+Route::get('/cart', [FrontendController::class, 'cart']);
 
 
-// Route Basic
-Route::get('/about', function() {
-    return 'ini halaman about';
-});
-Route::get('/profile', function() {
-    return view('profile');
-});
-
-// Route Parameter(ditandai dengan {})
-Route::get('produk/{NamaProduk}', function($a){
-    return 'Saya Membeli <b>' . $a . '</b>';
-});
-
-Route::get('beli/{barang}/{jumlah}', function($a, $b){
-    return view('beli', compact('a', 'b'));
-});
-
-// Route Opsional Parameter 
-Route::get('kategori/{namakategori?}', function ($nama = null){
-    if($nama){
-        return 'Anda Memilih Kategori: ' . $nama;
-    } else {
-        return 'Anda belum memilih kategori';
-    }
-});
-
-Route::get('promo/{barang?}/{kode?}', function($barang = null, $kode = null){
-    return view('barang', compact('barang', 'kode'));
-});
-
-Route::get('siswa', [MyController::class, 'index']);
-
-Route::get('siswa/create', [MyController::class, 'create']);
-Route::post('/siswa', [MyController::class, 'store']);
-
-Route::get('siswa/{id}', [MyController::class, 'show']);
-
-Route::get('siswa/{id}/edit', [MyController::class, 'edit']);
-Route::put('/siswa/{id}', [MyController::class, 'update']);
-
-Route::delete('/siswa/{id}', [MyController::class, 'destroy']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
