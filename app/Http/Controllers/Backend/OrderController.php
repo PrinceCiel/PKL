@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -18,15 +19,20 @@ class OrderController extends Controller
         return view('backend.order.index', compact('orders'));
     }
 
-    public function show($id)
+    public function show($code)
     {
-        $order = Order::with('user', 'products')->findOrFail($id);
+        $order_code = Order::with('user', 'products')->where('order_code', $code)->get();
+        foreach($order_code as $data)
+        {
+            $order = Order::with('products', 'user')->findOrFail($data->id);
+        }
         return view('backend.order.show', compact('order'));
     }
 
     public function destroy($id)
     {
-        $order = Order::findOrFail($id);
+        $order = Order::with('products')->where('id', $id)->findOrFail($id);
+        $order->products()->detach();
         $order->delete();
         toast('Pesanan berhasil dihapus', 'success');
         return redirect()->route('backend.orders.index');
@@ -43,7 +49,7 @@ class OrderController extends Controller
         $order->save();
 
         toast('Status order berhasil diperbarui', 'success');
-        return redirect()->route('backend.orders.show', $id);
+        return redirect()->back();
     }
 
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontendController;
@@ -33,7 +34,7 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkou
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
 
-Route::post('/product/{product}/review', [ReviewController::class, 'index'])->middleware('auth')->name('review.store');
+Route::post('/product/{product}/review', [ReviewController::class, 'store'])->middleware('auth')->name('review.store');
 
 
 Auth::routes();
@@ -45,6 +46,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix'=>'admin','as' => 'backend.','middleware'=>['auth', Admin::class]], function(){
     Route::get('/', [BackendController::class, 'index']);
     // crud
+    Route::resource('/user', UserController::class);
     Route::resource('/category',  CategoryController::class);
     Route::resource('product',  ProductController::class);
     Route::resource('orders', BackendOrderController::class);

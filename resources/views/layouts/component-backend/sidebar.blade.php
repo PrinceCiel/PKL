@@ -25,6 +25,22 @@
         <!-- Dashboard -->
         <!-- ---------------------------------- -->
         <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ url('/admin') }}" id="get-url" aria-expanded="false">
+            <span>
+                <i class="ti ti-aperture"></i>
+            </span>
+            <span class="hide-menu">Dashboard</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('backend.user.index') }}" id="get-url" aria-expanded="false">
+            <span>
+                <i class="ti ti-aperture"></i>
+            </span>
+            <span class="hide-menu">User</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('backend.category.index') }}" id="get-url" aria-expanded="false">
             <span>
                 <i class="ti ti-aperture"></i>

@@ -179,6 +179,106 @@ document.addEventListener("DOMContentLoaded", function () {
       offsetX: -5,
     },
   };
+  var chart_line_basic = new ApexCharts(
+    document.querySelector("#chart-line-basic-2"),
+    options_line
+  );
+  chart_line_basic.render();
+
+  // Data Label Line Chart   -------> LINE CHART
+  var options = {
+    series: [
+      {
+        name: "High - 2013",
+        data: [28, 29, 33, 36, 32, 32, 33],
+      },
+      {
+        name: "Low - 2013",
+        data: [12, 11, 14, 18, 17, 13, 13],
+      },
+    ],
+    chart: {
+      fontFamily: "inherit",
+      height: 350,
+      type: "line",
+      dropShadow: {
+        enabled: true,
+        color: "#000",
+        top: 18,
+        left: 7,
+        blur: 10,
+        opacity: 0.2,
+      },
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: ["var(--bs-primary)", "var(--bs-secondary)"],
+    dataLabels: {
+      enabled: true,
+    },
+    stroke: {
+      curve: "smooth",
+    },
+    grid: {
+      borderColor: "transparent",
+      row: {
+        colors: ["transparent"], // takes an array which will be repeated on columns
+        opacity: 0.5,
+      },
+    },
+    markers: {
+      size: 1,
+    },
+    xaxis: {
+      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      labels: {
+        style: {
+          colors: [
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+          ],
+        },
+      },
+    },
+    yaxis: {
+      min: 5,
+      max: 40,
+      labels: {
+        style: {
+          colors: [
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+            "#a1aab2",
+          ],
+        },
+      },
+    },
+    tooltip: {
+      theme: "dark",
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "right",
+      floating: true,
+      offsetY: -25,
+      offsetX: -5,
+    },
+  };
 
   var chart_line_data = new ApexCharts(
     document.querySelector("#chart-line-with-data-label"),

@@ -21,6 +21,6 @@ class ReviewController extends Controller
         $review->save();
 
         toast('Terima Kasih atas ulasan Anda!', 'success');
-        return back()
+        return back();
     }
 }
